@@ -1,0 +1,8 @@
+extends ../_shared/_master
+
+block content
+    != messages()
+
+    form(method="POST", action="/items")
+        input.form-control(type="text", placeholder="Enter text", name="text" required)
+        input.btn.btn-success(value="Save" type="submit")

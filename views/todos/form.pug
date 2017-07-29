@@ -1,0 +1,19 @@
+extends ../_shared/_master
+block head
+    script(src="https://rawgit.com/bassjobsen/Bootstrap-3-Typeahead/master/bootstrap3-typeahead.js")
+    script(src="/public/js/todos-autocomplete.js")
+    link(rel="stylesheet", href="/libs/typeahead/style.css")
+
+block content
+    != messages()
+
+    form(method="POST", action="/todos")
+        input.form-control(type="text", placeholder="Enter text", name="text" required)
+        label.form-control(for="isDone")= "Is Done"
+        input.form-control(type="checkbox", name="isDone") 
+        //- select.form-control(name="category")
+        //-     each cat in categories
+        //-         option(valie=cat) 
+        //-             =cat
+        input#autocomplete.form-control(name="category")
+        input.btn.btn-success(value="Save" type="submit")

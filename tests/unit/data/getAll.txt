@@ -1,0 +1,70 @@
+const { expect } = require('chai');
+// const sinon = require('sinon');
+
+const BaseData = require('../../../data/base/base.data');
+
+describe('BaseData.getAll()', () => {
+    const db = {
+        collection = {}
+    };
+    let ModelClass = null;
+    const validator = null;
+    const toArray = () => {
+        return new Promise.resolve(items);
+    }
+    const find = () => {
+        return toArray;
+    }
+    const findOne = (props) => {
+        const id = props._id;
+        const item = items.find((i) => i.id === id);
+        return Promise.resolve(item || null);
+    };
+
+    beforeEach(() => {
+        sinon.stub(db, 'collection')
+            .callsFake(() => {
+                return { find };
+            });
+
+        data = getData(db);
+    });
+    afterEach(() => {
+        db.collection.restore();
+    });
+
+    describe('when there are items in db', () => {
+
+        it('to return non-empty array',
+            (done) => {
+                items = [{
+                    _id: 'some-id',
+                    text: 'Test TODO'
+                }];
+
+                // data.getAll()
+                //     .then((todos) => {
+                //         expect(todos).to.eql(items);
+                //         done();
+                //     });
+
+            });
+
+
+
+    });
+
+    describe('when no items in db', () => {
+
+        it('to return empty array, when no items',
+            (done) => {
+                items = [];
+                data.getAll()
+                    .then((todos) => {
+                        expect(todos).to.eql(items);
+                        done();
+                    });
+            });
+
+    });
+})
